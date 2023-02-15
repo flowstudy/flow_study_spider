@@ -1,11 +1,6 @@
-import json
 import re
+import time
 from flow_study_spider import sql_appbk
-
-
-
-
-
 
 """
 功能；根据代码判断标签contract_type
@@ -42,7 +37,7 @@ def get_code_category():
         tgt_nft = "nft"
         tgt_token = "token"
         name_formate = contract_name.lower()
-        code_category = ""
+        # code_category = ""
         if name_formate.find(tgt_nft):
             code_category = "nft"
         elif name_formate.find(tgt_token):
@@ -72,6 +67,7 @@ def process():
         UPDATE flow_code SET contract_type = '{}' where id = {}
         """.format(contract_type,id)
         result = sql_appbk.mysql_com(sql)
+    get_code_category()
 
 
 if __name__ == '__main__':
@@ -88,6 +84,9 @@ import FungibleToken from 0xf233dcee88fe0abe
 
 pub contract DisruptArt: NonFungibleToken {
     """
+    while 1:
+        process()
+        time.sleep(60*60)
     # process()
 
     # cate_type= get_code_type(contract_code)

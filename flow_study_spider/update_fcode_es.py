@@ -1,11 +1,7 @@
 # 全量向es中导入flow_code表数据
-
-import sys
-from elasticsearch import Elasticsearch
-import datetime
-import json
-import sql_appbk
 import time
+from elasticsearch import Elasticsearch
+import sql_appbk
 
 
 # 向es插入一条数据,data格式为dict
@@ -24,8 +20,8 @@ def process():
     # 读取MySQL数据的数据表
     sql_com = 'select * from flow_code where is_process = 0 ;'
     result = sql_appbk.mysql_com(sql_com)
-    if 0==len(result):
-        time.sleep(60*60) #1小时
+    if 0 == len(result):
+        time.sleep(60*60)  # 1小时
         return 0
     for row in result:
         print(row)

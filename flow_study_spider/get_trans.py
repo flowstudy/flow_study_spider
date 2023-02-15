@@ -1,14 +1,11 @@
 import asyncio
-import datetime
-import time
-
-import flow_py_sdk
-from flow_py_sdk import flow_client
 import re
-import sql_appbk
+import time
 from concurrent.futures import ThreadPoolExecutor
 
+from flow_py_sdk import flow_client
 
+import sql_appbk
 
 # pip3 install  flow-py-sdk
 # need py 3.9
@@ -62,10 +59,8 @@ async def get_trans(height):
             for trans_id in collection.transaction_ids: # 获得 collection 中所有transaction 列表，并遍历
                 trans_id_hex = trans_id.hex() # 获得交易id，16进制形式
                 transaction = await client.get_transaction(id=trans_id) # 根据交易id 获得交易详情
-
                 user_address= transaction.proposal_key.address.hex() # 获得交易中的用户地址
                 trans_script = transaction.script.decode("utf-8") # 获得交易的脚本代码
-                #print(trans_script)
                 import_data_list = get_contract_address(trans_script) # 从交易代码中解析合约地址
                 # 遍历合约地址，构造需要插入数据库的数据
                 for import_data in import_data_list:

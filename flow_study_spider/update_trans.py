@@ -1,7 +1,6 @@
 import asyncio
-import get_trans
 import time
-import sys
+import get_trans
 import sql_appbk
 
 """
@@ -17,7 +16,7 @@ def update_trans_data():
     result = sql_appbk.mysql_com(sql_get_block)
 
     # 如果没有结果，表示没有数据需要处理，则sleep30秒，
-    if 0==len(result):
+    if 0 == len(result):
         time.sleep(30)
         return 0
 

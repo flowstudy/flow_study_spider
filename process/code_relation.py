@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 #coding=utf-8
-#########################################################################
+######################################################################
 # Author: @appbk.com
 # Created Time: Sun 01 Mar 2020 09:08:42 PM CST
 # File Name: index.py
 # Description:
 ######################################################################
 import re
-import json
 import sql_appbk
 
-
 """
-功能；通过go服务解析代码，得到代码结构，获取代码相关合约,抽取import 并存入数据库。
+功能；获取一段合约代码的相关代码,抽取import名称 并存入数据库。
 输入：contract_code,合约代码。
 输入：contract_address,合约地址。
 返回：list 格式如下 [{"contract_name":"name1","contract_address":"address1"},
@@ -24,10 +22,7 @@ def get_code_related(contract_code):
     #step 1,获得所有引用
     p = re.compile('import.{3,30}from 0x\w{10,25}') #引用的正则
     import_list = p.findall(contract_code)
-
     # step 2 ,解析每一行，获得相关的合约地址和合约名称
-
-
     for item in import_list:
         item_list = item.split()
         contract_name = item_list[1]
@@ -38,7 +33,6 @@ def get_code_related(contract_code):
             "contract_address":contract_address,
         }
         relate_contract_list.append(import_data)
-
     return relate_contract_list
 
 
@@ -77,7 +71,6 @@ def get_code_relate_transaction():
             data_dict["contract_name"] = c_name
             data_dict["contract_address"] = c_address
             # 判断相关合约，属于trans类型（flow_code表 contract_type字段，值为transaction） 则插入表flow_code_relate_transaction、
-
             sql_istrans = """
             select contract_type from flow_code where contract_address = '{}' and contract_name = '{}'
             """.format(relate_transaction_address,relate_transaction_name)

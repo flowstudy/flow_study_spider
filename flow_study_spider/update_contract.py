@@ -1,12 +1,11 @@
-import asyncio
 import time
-
-import flow_py_sdk
-from flow_py_sdk import flow_client
-from flow_py_sdk.cadence import Address
-import re
-import sql_appbk
 from twisted.internet import task, reactor
+import sql_appbk
+"""
+功能：每小时运行1次，flow_trans_data表中的contract_address去重，插入flow_contract_address表
+输入：无
+返回：
+"""
 
 def update_contract():
     print("处理合约地址更新",time.strftime("%Y-%m-%d %H:%M:%S"))
@@ -14,13 +13,13 @@ def update_contract():
     sql = """
     INSERT ignore into flow_contract_address  (contract_address) 
     SELECT distinct(contract_address)  as dis_contract_adress  FROM flow_trans_data 
-    WHERE fetch_time > DATE_SUB(now(),INTERVAL 1 HOUR) 
+    WHERE fetch_time > DATE_SUB(now(),INTERVAL 1 HOUR)
     """
     ret = sql_appbk.mysql_com(sql)
     return 0
 
 """
-功能：每 秒执行一次，获得区块高度的函数
+功能：每小时运行1次，获得区块高度的函数
 输入：无
 返回：
 """

@@ -10,8 +10,10 @@ import matplotlib.pyplot as plt
 #ref:https://www.heywhale.com/mw/project/5f5dc9afae300e0046fdd488
 
 
-#pip3 install jeiba sklearn wordcloud
-
+#pip3 install jieba
+#pip3 install sklearn
+#pip3 install wordcloud
+#
 def CreatCorpus(path):
     files = os.listdir(path)
     # 读取文档

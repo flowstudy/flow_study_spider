@@ -1,12 +1,8 @@
 import asyncio
-import datetime
 import time
-from twisted.internet import task, reactor
-import flow_py_sdk
 from flow_py_sdk import flow_client
-import re
+from twisted.internet import task, reactor
 import sql_appbk
-#
 # client = flow_client(host="access.mainnet.nodes.onflow.org", port=9000)
 
 '''
@@ -14,6 +10,7 @@ import sql_appbk
 输入：无
 返回：height 高度 
 '''
+
 async def get_block_height():
     async with flow_client(
             host="access.mainnet.nodes.onflow.org", port=9000
@@ -34,7 +31,6 @@ async def get_block_height():
         # block_list.append(data)
         # sql_appbk.insert_update_data(data,"flow_block")
         ret = sql_appbk.insert_data(data,"flow_block")
-
         return height
 
 
@@ -58,7 +54,10 @@ def  process():
 
 
 if __name__ == '__main__':
-    process()
+    while 1:
+        process()
+        time.sleep(60*60)
+
 
 
 

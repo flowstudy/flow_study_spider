@@ -1,11 +1,9 @@
 import asyncio
-import time
-
-import flow_py_sdk
-from flow_py_sdk import flow_client
-from flow_py_sdk.cadence import Address
 import re
+import time
+from flow_py_sdk import flow_client
 import sql_appbk
+
 #获得合约，一个账号下可能有多个合约账号+合约名为唯一id
 
 def get_contract_name(code):
@@ -47,11 +45,10 @@ async def get_contract(address):
             host="access.mainnet.nodes.onflow.org", port=9000
     ) as client:
         service_account_address = bytes.fromhex(address)
-        #到最新高度的信息
+
         account = await client.get_account(
             address=service_account_address
         )
-
         contract_data_list = []
         for key in account.contracts:
             contract = account.contracts[key]
@@ -79,7 +76,6 @@ def process_all():
         except Exception as e:
             print("erro",e)
             continue
-
         sql_appbk.insert_data_list(contract_data_list, "flow_code")
         # 更新标记为1
         contract_id = item["id"]
@@ -87,7 +83,6 @@ def process_all():
         update flow_contract_address set is_process = 1 where id ={}
         """.format(contract_id)
         ret = sql_appbk.mysql_com(sql_update)
-
 
 if __name__ == "__main__":
     # data_list=asyncio.run(get_contract("8234007b36f8113c"))

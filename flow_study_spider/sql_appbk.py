@@ -2,11 +2,8 @@
 #coding=utf-8
 #功能，appbk数据库访问
 #输入数据库表和sql命令，返回结果
-import os
-import sys
-import time
-import json
 import datetime
+import json
 import pymysql
 pymysql.install_as_MySQLdb()
 import MySQLdb
