@@ -21,16 +21,16 @@ async def get_block_height():
         # block信息插入数据库
         parent_id_hex = latest_block.parent_id.hex()
         data = {
-            "block_id" : latest_block.id.hex(),
-            "signatures" : latest_block.signatures[0].hex(),
-            "parent_id" : parent_id_hex,
-            "height" : latest_block.height,
-            "fetch_time" : time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),
-            "timestamp" : latest_block.timestamp,
+            "block_id": latest_block.id.hex(),
+            "signatures": latest_block.signatures[0].hex(),
+            "parent_id": parent_id_hex,
+            "height": latest_block.height,
+            "fetch_time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+            "timestamp": latest_block.timestamp,
         }
         # block_list.append(data)
         # sql_appbk.insert_update_data(data,"flow_block")
-        ret = sql_appbk.insert_data(data,"flow_block")
+        ret = sql_appbk.insert_data(data, "flow_block")
         return height
 
 
@@ -54,10 +54,10 @@ def  process():
 
 
 if __name__ == '__main__':
-    while 1:
-        process()
-        time.sleep(60*60)
-
+    # while 1:
+    #     process()
+    #     time.sleep(60*60)
+    process()
 
 
 

@@ -75,7 +75,6 @@ if __name__ == '__main__':
 // Version         : 0.0.8
 
 // Blockchain      : Flow www.onFlow.org
-
 import NonFungibleToken from 0x1d7e57aa55817448
 
 import MetadataViews from 0x1d7e57aa55817448

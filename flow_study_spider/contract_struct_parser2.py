@@ -5,8 +5,6 @@ import requests
 from flow_study_spider import sql_appbk
 
 
-ret_list = []
-
 """
 功能：通过代码原结构，解析Identifier/Identifiers，获得代码块的EndPos
 输入：declaration_node Declarations其中的一个node
@@ -172,7 +170,7 @@ def get_code_text(contract_code):
 """
 def code_et():
     sql = """
-    SELECT id,contract_address,contract_name,contract_code FROM `flow_code` WHERE contract_type = "contract" and is_structed = 0 limit 2
+    SELECT id,contract_address,contract_name,contract_code FROM `flow_code` WHERE contract_type = "contract" and is_structed = 0 limit 20
     """
     flow_code = sql_appbk.mysql_com(sql)
     if 0 == len(flow_code):

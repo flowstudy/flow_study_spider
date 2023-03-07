@@ -1,5 +1,7 @@
 import asyncio
 import json
+import time
+
 from flow_py_sdk import flow_client
 import sql_appbk
 
@@ -13,8 +15,8 @@ async def get_event_list(start_height, end_height):
             #host="access-001.mainnet14.nodes.onflow.org", port=9000,
             host="access.mainnet.nodes.onflow.org", port=9000
     ) as client:
-        #必须知道所有的合约，和event的名称
-        #type: A.{contract address}.{contract name}.{event name}
+        # 必须知道所有的合约，和event的名称
+        # type: A.{contract address}.{contract name}.{event name}
         events = await client.get_events_for_height_range(
             type="A.1654653399040a61.FlowToken.TokensDeposited",
             #type="flow.AccountCreated", #账号创建 event
@@ -36,7 +38,7 @@ async def get_event_list(start_height, end_height):
                         #print(from_address,amount,trans_id)
                         if  "0xf919ee77447b7497" != to_address: #系统的不要
                             transfer = {
-                                "to_address":to_address,
+                                "to_address": to_address,
                                 "amount": amount,
                                 "trans_id": trans_id,
                             }
@@ -57,4 +59,6 @@ def get_all():
         asyncio.run(get_event_list(start_height, end_height))
 
 if __name__ == "__main__":
-    get_all()
+    while 1:
+        get_all()
+        time.sleep(60*60)

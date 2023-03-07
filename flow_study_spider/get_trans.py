@@ -2,7 +2,6 @@ import asyncio
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor
-
 from flow_py_sdk import flow_client
 
 import sql_appbk

@@ -23,7 +23,6 @@ def update_trans_data():
     height = result[0]["height"]
     print("height ", height)
 
-
     #step2 获得区块内的交易信息，主要是合约代码和名称，插入flow_trans_data,
     # 调用函数为 get_trans.get_trans(height)
     ret = asyncio.run(get_trans.get_trans(height))

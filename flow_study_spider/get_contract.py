@@ -3,7 +3,6 @@ import re
 import time
 from flow_py_sdk import flow_client
 import sql_appbk
-
 #获得合约，一个账号下可能有多个合约账号+合约名为唯一id
 
 def get_contract_name(code):
@@ -68,7 +67,7 @@ def process_all():
     sql = "select * from flow_contract_address where is_process = 0"
     result = sql_appbk.mysql_com(sql)
     for item in result:
-        contract_address = item["contract_address"].replace("0x","")
+        contract_address = item["contract_address"].replace("0x", "")
         print(contract_address)
         # 通过contract_address 获取合约代码
         try:

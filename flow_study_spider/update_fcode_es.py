@@ -3,7 +3,6 @@ import time
 from elasticsearch import Elasticsearch
 import sql_appbk
 
-
 # 向es插入一条数据,data格式为dict
 # 使用时修改es地址，索引名
 def insert_es(data):
@@ -37,3 +36,4 @@ def process():
 if __name__ == '__main__':
     while 1:
         process()
+        time.sleep(60*60)

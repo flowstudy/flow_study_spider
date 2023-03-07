@@ -12,7 +12,7 @@ def update_contract():
     #  flow_trans_data表中，每小时获取一次合约地址，插入到flow_contract_address
     sql = """
     INSERT ignore into flow_contract_address  (contract_address) 
-    SELECT distinct(contract_address)  as dis_contract_adress  FROM flow_trans_data 
+    SELECT distinct(contract_address)  as dis_contract_adress FROM flow_trans_data 
     WHERE fetch_time > DATE_SUB(now(),INTERVAL 1 HOUR)
     """
     ret = sql_appbk.mysql_com(sql)

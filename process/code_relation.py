@@ -7,6 +7,8 @@
 # Description:
 ######################################################################
 import re
+import time
+
 import sql_appbk
 
 """
@@ -85,7 +87,6 @@ def get_code_relate_transaction():
         update flow_code set is_trans =1 where contract_address = '{}' and contract_name = '{}'
         """.format(c_address,c_name)
         sql_appbk.mysql_com(sql_update)
-
     return 0
 
 
@@ -117,5 +118,8 @@ if __name__ == '__main__':
 #     """
 #     result = get_code_related(contract_code)
 #     print(result)
-    get_code_relate_transaction()
+    while 1:
+        get_code_relate_transaction()
+        time.sleep(60 * 60)
+
 

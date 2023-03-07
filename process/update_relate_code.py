@@ -62,10 +62,10 @@ def update_relate_code():
 
 
 
-def proceess():
-    while 1:
-        update_relate_code()
-        time.sleep(60*10)
+# def proceess():
+#     while 1:
+#         update_relate_code()
+#         time.sleep(60*10)
 
         # 1
         # 2
@@ -104,5 +104,6 @@ def proceess():
 #     return 0
 
 if __name__ == '__main__':
-    update_relate_code()
-    # cc()
+    while 1:
+        update_relate_code()
+        time.sleep(60*10)

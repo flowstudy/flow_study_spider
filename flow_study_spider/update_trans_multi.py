@@ -5,7 +5,7 @@ import get_trans
 import sql_appbk
 
 """
-功能：获得一个高度的区块中的trans信息，插入数据库flow_trans_data,并更新flow_block状态，
+功能：并更新flow_block状态，
 输入：height，区块高度
 返回：0
 """
