@@ -3,7 +3,7 @@ import time
 
 import requests
 from flow_study_spider import sql_appbk
-
+# get_code_text 配置url地址
 
 """
 功能：通过代码原结构，解析Identifier/Identifiers，获得代码块的EndPos
@@ -104,7 +104,7 @@ def process_declaration_node(declaration_node):
 
 
 """
-功能:解析代码，获得所有的代码段 代码类型 struct_type  ,第一步 调用  找节点
+功能:解析代码，获得所有的代码段 代码类型 struct_type,第一步 调用  找节点
 输入:代码
 返回:
 """
@@ -183,8 +183,8 @@ def parse_code2(declaration_nodes):
 功能：通过contract_code 代码 调用go服务，获取包含代码结构的code_text,
 """
 def get_code_text(contract_code):
-    # url =  "http://127.0.0.1:8080/parse"
-    url =  "http://8.218.127.18:8080/parse"
+    url =  "http://127.0.0.1:8080/parse"
+    # url =  "http://8.218.127.18:8080/parse"
     ret = requests.post(url, data=contract_code.encode('utf-8'))
     ret_text = ret.text
     if ret_text is None or ret_text == '':
@@ -198,6 +198,7 @@ def get_code_text(contract_code):
 返回： 
 """
 def code_et():
+    print("运行contract_struct_parse2....")
     global ret_list
     sql = """
     SELECT id,contract_address,contract_name,contract_code FROM `flow_code` WHERE contract_type = "contract" and is_structed = 0 limit 20
@@ -251,6 +252,10 @@ def code_et():
 输入:代码
 返回:
 """
+
+def process():
+    while 1:
+        code_et()
 
 if __name__ == '__main__':
 #     declaration_node_text1 = """

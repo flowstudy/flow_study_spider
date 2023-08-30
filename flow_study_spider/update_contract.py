@@ -3,7 +3,7 @@ from twisted.internet import task, reactor
 import sql_appbk
 """
 功能：每小时运行1次，flow_trans_data表中的contract_address去重，插入flow_contract_address表
-输入：无
+输入：无。
 返回：
 """
 

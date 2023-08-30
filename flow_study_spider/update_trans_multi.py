@@ -6,7 +6,7 @@ import sql_appbk
 
 """
 功能：并更新flow_block状态，
-输入：height，区块高度
+输入：height，区块高度。
 返回：0
 """
 def update_trans_by_height(height):

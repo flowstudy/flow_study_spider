@@ -16,7 +16,7 @@ import sql_appbk
 返回：0成功，-1失败
 """
 def update_relate_code():
-    # step 1 从数据库flow_code获得一批需要处理的代码，标记为is_relate，
+    # step 1 从数据库flow_code获得一批需要处理的代码，标记为is_relate。
     sql = """
     select * from flow_code where  is_relate = 0 limit 100
     """

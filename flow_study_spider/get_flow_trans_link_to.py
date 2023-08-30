@@ -8,7 +8,7 @@ import sql_appbk
 
 # pip3 install  flow-py-sdk
 # need py 3.9
-# 获得flow转账的events记录
+# 获得flow转账的events记录。
 
 async def get_event_list(start_height, end_height):
     async with flow_client(

@@ -5,7 +5,7 @@ import sql_appbk
 
 """
 功能：从 flow_block读取未处理的区块，获得区块内的交易信息，主要是合约代码和名称，插入flow_trans_data
-输入：无
+输入：无。
 输出：无
 """
 def update_trans_data():

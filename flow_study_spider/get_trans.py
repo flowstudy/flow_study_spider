@@ -40,7 +40,7 @@ def get_contract_address(trans_script):
 输入：height区块高度。
 返回：0成功 其他失败。
 
- 插入数据库flow_trans_data
+ 插入数据库flow_trans_data。
 '''
 async def get_trans(height):
     async with flow_client(

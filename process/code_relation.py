@@ -97,7 +97,6 @@ if __name__ == '__main__':
 #     import NonFungibleToken from 0x1d7e57aa55817448
 #     import MetadataViews from 0x1d7e57aa55817448
 #
-#
 # pub contract HelloWorld {
 #     //import LicensedNFT from 0x01ab36aaf654a13e
 #     // Declare a public field of type String.

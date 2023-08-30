@@ -12,7 +12,7 @@ def insert_es(data):
     # print(res['result'])
     return res
 
-# 读取MySQL数据，插入es
+# 读取MySQL数据，插入es。
 # 使用时修改mysql表
 def process():
     print("上传es")

@@ -40,7 +40,7 @@ def process_sub():
     return height
 """
 功能：每0.5秒执行一次，获得区块高度的函数
-输入：无
+输入：无。
 返回：
 """
 def  process():

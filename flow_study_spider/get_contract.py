@@ -37,7 +37,7 @@ def get_contract_name(code):
 """
 fun:get contract list of a address
 input: address, contract address
-return: contract_list, contract list
+return: contract_list, contract list。
 """
 async def get_contract(address):
     async with flow_client(
