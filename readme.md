@@ -29,7 +29,7 @@ flow区块链：https://www.flowdiver.io/
 # Step 4:
 postprocess，后处理
 获得代码的类型，给flow_code添加contract_category分类字段
-标记为就是contract_category字段本身
+标记为就是contract_category字段本身(parse_flow_code.py)
 
 # Step 5:
 更新es代码，从flow_code表中获取未处理的合约代码（is_process = 1），更新es中的数据（update_fcode_es.py）

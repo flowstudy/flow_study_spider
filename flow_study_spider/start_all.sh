@@ -18,4 +18,8 @@ nohup python3 get_contract.py > get_contract.log 2>&1 &
 
 # Step 4:
 #更新es代码，从flow_code表中获取未处理的合约代码（is_process = 1），更新es中的数据（update_fcode_es.py）
+nohup python3 parse_flow_code.py > parse_flow_code.log 2>&1 &
+
+# Step 5:
+#更新es代码，从flow_code表中获取未处理的合约代码（is_process = 1），更新es中的数据（update_fcode_es.py）
 nohup python3 update_fcode_es.py > update_fcode_es.log 2>&1 &
