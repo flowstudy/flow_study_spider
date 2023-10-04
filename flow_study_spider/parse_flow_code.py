@@ -1,6 +1,6 @@
 import re
 import time
-from flow_study_spider import sql_appbk
+import sql_appbk
 
 """
 功能；根据代码判断标签contract_type
@@ -33,6 +33,8 @@ def get_code_category():
     # print(contract_name)
     for item in ret:
         contract_name = item["contract_name"]
+        print("contract_name", contract_name)
+
         id = item["id"]
         tgt_nft = "nft"
         tgt_token = "token"

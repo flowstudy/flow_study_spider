@@ -73,7 +73,7 @@ def process_all():
         try:
             contract_data_list = asyncio.run(get_contract(contract_address))
         except Exception as e:
-            print("erro",e)
+            print("ERROR", e)
             continue
         sql_appbk.insert_data_list(contract_data_list, "flow_code")
         # 更新标记为1

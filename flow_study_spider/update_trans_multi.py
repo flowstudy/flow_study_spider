@@ -13,7 +13,10 @@ def update_trans_by_height(height):
     print("height: ", height)
     #step2 获得区块内的交易信息，主要是合约代码和名称，插入flow_trans_data,
     # 调用函数为 get_trans.get_trans(height)
-    ret = asyncio.run(get_trans.get_trans(height))
+    try:
+        ret = asyncio.run(get_trans.get_trans(height))
+    except Exception as e:
+        print("ERROR", e)
 
     # step3 更新该区块的状态 is_update =1
     sql_update_state = """
@@ -33,7 +36,7 @@ def update_trans_data():
     executor = ThreadPoolExecutor(max_workers=concurrency_num)
 
     sql_get_block = """
-    select * from flow_block where is_updated = 0 limit {}
+    select * from flow_block where is_updated = 0 and fetch_time>'2023-10-01 00:00:00' limit {}
     """.format(concurrency_num)
     result = sql_appbk.mysql_com(sql_get_block)
 
@@ -66,6 +69,10 @@ def update_trans_data():
 
 if __name__ == '__main__':
     while 1:
-        update_trans_data()
-        time.sleep(60*60)
+        try:
+            update_trans_data()
+            #time.sleep(60*60)
+        except Exception as e:
+            print("ERROR", e)
+            time.sleep(0.1)
     # update_trans_data()

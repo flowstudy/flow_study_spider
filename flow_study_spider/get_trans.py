@@ -91,7 +91,7 @@ def thread_run(height):
 def get_all():
     concurrency_num = 30  #线程数
     executor = ThreadPoolExecutor(max_workers=concurrency_num)
-    for height in range(38395746, 37795746, -1*concurrency_num):
+    for height in range(62203905, 62283905, -1*concurrency_num):
     # for height in range(31893338, 31293338, -1*concurrency_num):
         print(height, "time", time.time())
 
