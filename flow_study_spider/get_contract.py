@@ -68,7 +68,7 @@ def process_all():
     result = sql_appbk.mysql_com(sql)
     for item in result:
         contract_address = item["contract_address"].replace("0x", "")
-        print(contract_address)
+        print("process contract-------", contract_address)
         # 通过contract_address 获取合约代码
         try:
             contract_data_list = asyncio.run(get_contract(contract_address))

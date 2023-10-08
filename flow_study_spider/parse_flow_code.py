@@ -25,31 +25,19 @@ def get_code_type(contract_code):
 输入：contract_code
 返回：标签 contract_category(nft,token,other)
 """
-def get_code_category():
-    sql = """
-    select contract_name,id from flow_code where contract_type = "contract" and contract_category is null 
-    """
-    ret = sql_appbk.mysql_com(sql)
-    # print(contract_name)
-    for item in ret:
-        contract_name = item["contract_name"]
-        print("contract_name", contract_name)
+def get_code_category(contract_name):
+    tgt_nft = "nft"
+    tgt_token = "token"
+    name_formate = contract_name.lower()
+    # code_category = ""
+    if name_formate.find(tgt_nft):
+        code_category = "nft"
+    elif name_formate.find(tgt_token):
+        code_category = "token"
+    else:
+        code_category = "other"
+    return code_category
 
-        id = item["id"]
-        tgt_nft = "nft"
-        tgt_token = "token"
-        name_formate = contract_name.lower()
-        # code_category = ""
-        if name_formate.find(tgt_nft):
-            code_category = "nft"
-        elif name_formate.find(tgt_token):
-            code_category = "token"
-        else:
-            code_category = "other"
-        sql_update = """
-        update flow_code set contract_category = '{}' where id={}
-        """.format(code_category,id)
-        result = sql_appbk.mysql_com(sql_update)
 
 
 """
@@ -58,18 +46,26 @@ def get_code_category():
 输出： 
 """
 def process():
-    sql_select = "select * from flow_code where contract_type is null "
-    # sql_select = "select * from flow_code where id =2"
+    sql_select = "select * from flow_code where contract_type is null  limit 10 "
     ret = sql_appbk.mysql_com(sql_select)
+    if len(ret) == 0:
+        print("sleep process。。。。。。。。。。。。。。。。。。")
+        time.sleep(60 * 60)
+        return 0
+
     for item in ret:
         id = item["id"]
         code = item["contract_code"]
+        name = item["contract_name"]
+
         contract_type = get_code_type(code)
+        contract_category = get_code_category(name)
+
         sql = """
-        UPDATE flow_code SET contract_type = '{}' where id = {}
-        """.format(contract_type,id)
+        UPDATE flow_code SET contract_type = '{}', contract_category='{}' where id = {}
+        """.format(contract_type, contract_category, id)
         result = sql_appbk.mysql_com(sql)
-    get_code_category()
+    #get_code_category()
 
 
 if __name__ == '__main__':
@@ -87,7 +83,8 @@ pub contract DisruptArt: NonFungibleToken {
     """
     while 1:
         process()
-        time.sleep(60*60)
+        #time.sleep(60*60)
+
     # process()
 
     # cate_type= get_code_type(contract_code)
